@@ -14,6 +14,12 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
     // Search documents by keyword contained in content (case insensitive)
     List<Document> findByContentContainingIgnoreCase(String keyword);
     
-    @Query(value = "SELECT * FROM documents WHERE LOWER(content) LIKE LOWER(CONCAT('%', :keyword, '%'))", nativeQuery = true)
-    List<Document> searchByKeyword(@Param("keyword") String keyword); 
+    @Query(value = "SELECT * FROM documents WHERE LOWER(content) LIKE LOWER(CONCAT('%', :keyword, '%'))"
+    		+ "OR LOWER(filename) LIKE LOWER(CONCAT('%', :filename, '%'))"
+    		+ "OR LOWER(author) LIKE LOWER(CONCAT('%', :author, '%'))"
+    		+ "OR LOWER(file_type) LIKE LOWER(CONCAT('%', :file_type, '%'))", nativeQuery = true)
+    List<Document> searchByKeyword(@Param("keyword") String keyword,
+    		@Param("filename") String filename,
+    		@Param("author") String author,
+    		@Param("file_type") String file_type); 
 }

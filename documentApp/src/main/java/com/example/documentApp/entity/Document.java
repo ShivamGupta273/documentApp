@@ -7,10 +7,10 @@ import lombok.*;
 
 @Entity
 @Table(name = "documents")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Document {
 
     @Id
@@ -102,9 +102,6 @@ public class Document {
 		this.content = content;
 	}
 
-	public Document() {
-    }
-
     public Document(String filename, String fileType, Date uploadedDate, String fileSize, String content) {
         this.filename = filename;
 //        this.path = path;
@@ -113,5 +110,8 @@ public class Document {
         this.uploadedDate = uploadedDate;
         this.fileSize = fileSize;
         this.content = content;
+    }
+    
+    public Document() {
     }
 }

@@ -39,8 +39,12 @@ public class DocumentController {
 
     // Search documents by keyword
     @GetMapping("/search")
-    public ResponseEntity<List<Document>> searchDocuments(@RequestParam("keyword") String keyword) {
-        List<Document> docs = documentService.searchDocuments(keyword);
+    public ResponseEntity<List<Document>> searchDocuments(@RequestParam(name = "keyword", required = false) String keyword,
+    		@RequestParam(name = "filename", required = false) String filename,
+    		@RequestParam(name = "author", required = false) String author,
+    		@RequestParam(name = "file_type", required = false) String file_type){
+    	System.out.println("keyword: " + keyword + " filename: " + filename + " author: " + author + " file_type: "+ file_type);
+        List<Document> docs = documentService.searchDocuments(keyword, filename, author, file_type);
         return ResponseEntity.ok(docs);
     }
 

@@ -70,9 +70,9 @@ public class DocumentService {
         return documentRepository.save(document);
     }
 
-    public List<Document> searchDocuments(String keyword, String filename, String author, String file_type) {
+    public List<Document> searchDocuments(Long id, String keyword, String filename, String author, String file_type) {
     	System.out.println("keyword: " + keyword + " filename: " + filename + " author: " + author + " file_type: "+ file_type);
-    	return documentRepository.searchByKeyword(keyword, filename, author, file_type);
+    	return documentRepository.searchByKeyword(id, keyword, filename, author, file_type);
         //return documentRepository.findByContentContainingIgnoreCase(keyword);
     }
 
